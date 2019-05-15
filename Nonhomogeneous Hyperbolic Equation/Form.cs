@@ -23,6 +23,7 @@ namespace Nonhomogeneous_Hyperbolic_Equation
         public Form()
         {
             InitializeComponent();
+            MathNet.Numerics.Control.ConfigureAuto();
 
             chart.Series.Clear();
             chart.ChartAreas[0].AxisX.IsMarginVisible = false;
@@ -115,68 +116,6 @@ namespace Nonhomogeneous_Hyperbolic_Equation
                 pictureBox3.Image = Image.FromStream(new MemoryStream(pngBytes));
             }));
 
-            //new Task(() =>
-            //{
-            //    while (true)
-            //    {
-            //        string latex_formula_phi =
-            //            "\\phi\\left(x\\right)=" +
-            //            MathNet.Symbolics.LaTeX.Format(expr_phi.Expression).Replace("\\pix", "{\\pi}x");
-
-            //        try
-            //        {
-            //            byte[] pngBytes = new TexFormula(
-            //                new TexFormulaParser().Parse(
-            //                    latex_formula_phi)).RenderToPng(100.0, 0.0, 0.0, "Arial");
-            //            pictureBox1.Image = Image.FromStream(new MemoryStream(pngBytes));
-
-            //            break;
-            //        }
-            //        catch (Exception) { }
-            //    }
-            //}).Start();
-            //new Task(() =>
-            //{
-            //    while (true)
-            //    {
-            //        string latex_formula_psi =
-            //            "\\psi\\left(x\\right)=" +
-            //            MathNet.Symbolics.LaTeX.Format(expr_psi.Expression).Replace("\\pix", "{\\pi}x");
-
-            //        try
-            //        {
-            //            byte[] pngBytes = new TexFormula(
-            //                new TexFormulaParser().Parse(
-            //                    latex_formula_psi)).RenderToPng(100.0, 0.0, 0.0, "Arial");
-            //            pictureBox2.Image = Image.FromStream(new MemoryStream(pngBytes));
-
-            //            break;
-            //        }
-            //        catch (Exception) { }
-            //    }
-            //}).Start();
-            //new Task(() =>
-            //{
-            //    while (true)
-            //    {
-            //        string latex_formula_b =
-            //            "b\\left(x\\right)=" +
-            //            MathNet.Symbolics.LaTeX.Format(expr_b.Expression).Replace("\\pix", "{\\pi}x");
-
-            //        try
-            //        {
-            //            byte[] pngBytes = new TexFormula(
-            //                new TexFormulaParser().Parse(
-            //                    latex_formula_b)).RenderToPng(100.0, 0.0, 0.0, "Arial");
-            //            pictureBox3.Image = Image.FromStream(new MemoryStream(pngBytes));
-
-            //            break;
-            //        }
-            //        catch (Exception) { }
-            //    }
-            //}).Start();
-
-
             var A = MathNet.Numerics.LinearAlgebra.Matrix<double>.Build.DenseOfArray(new double[,]
             {
                 { 3, 2, -1 },
@@ -195,18 +134,33 @@ namespace Nonhomogeneous_Hyperbolic_Equation
             Console.WriteLine(MathNet.Numerics.Integration.NewtonCotesTrapeziumRule.IntegrateAdaptive(phi, 0, l, 1e-5));
 
             chart.Series.Clear();
-            chart.Series.Add("Начальные условия");
-            chart.Series["Начальные условия"].ChartType = SeriesChartType.Spline;
-            chart.Series["Начальные условия"]["LineTension"] = "0.2";
-            chart.Series["Начальные условия"].Color = Color.Gray;
-            chart.Series["Начальные условия"].BorderWidth = 2;
-
+            chart.Series.Add("Начальное условие \u03D5(x)");
+            chart.Series["Начальное условие \u03D5(x)"].ChartType = SeriesChartType.Spline;
+            chart.Series["Начальное условие \u03D5(x)"]["LineTension"] = "0.2";
+            chart.Series["Начальное условие \u03D5(x)"].Color = Color.Gray;
+            chart.Series["Начальное условие \u03D5(x)"].BorderWidth = 2;
 
             double dx = 0.1;
             for (double x = 0.0; x <= 7; x += dx)
             {
-                chart.Series["Начальные условия"].Points.AddXY(x, phi(x));
+                chart.Series["Начальное условие \u03D5(x)"].Points.AddXY(x, phi(x));
             }
+
+
+
+
+
+
+        }
+
+        private void BackgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            progressBar1.Value = e.ProgressPercentage;
+        }
+
+        private void BackgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            progressBar1.Value = 0;
         }
     }
 }
