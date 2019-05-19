@@ -19,6 +19,7 @@ namespace Nonhomogeneous_Hyperbolic_Equation
     public partial class Form : System.Windows.Forms.Form
     {
         static TexFormulaParser texFormulaParser = new TexFormulaParser();
+        static Grid2D grid2D;
 
         public Form()
         {
@@ -36,6 +37,11 @@ namespace Nonhomogeneous_Hyperbolic_Equation
 
         private void Button1_Click(object sender, EventArgs e)
         {
+            trackBar1.Maximum = int.Parse(textBox7.Text) - 1;
+
+            double L = double.Parse(textBox2.Text);
+            double T = double.Parse(textBox5.Text);
+
             double a = Math.Sqrt(double.Parse(textBox1.Text));
             double l = double.Parse(textBox2.Text);
             double h = double.Parse(textBox3.Text);
@@ -116,51 +122,156 @@ namespace Nonhomogeneous_Hyperbolic_Equation
                 pictureBox3.Image = Image.FromStream(new MemoryStream(pngBytes));
             }));
 
-            var A = MathNet.Numerics.LinearAlgebra.Matrix<double>.Build.DenseOfArray(new double[,]
-            {
-                { 3, 2, -1 },
-                { 2, -2, 4 },
-                { -1, 0.5, -1}
-            });
-            var b1 = MathNet.Numerics.LinearAlgebra.Vector<double>.Build.Dense(new double[] { 1, -2, 0 });
-            var x1 = A.Solve(b1);
-            Console.WriteLine(x1);
-
 
             Func<double, double> phi = expr_phi.Compile("x");
             Func<double, double> psi = expr_psi.Compile("x");
             Func<double, double> b = expr_b.Compile("x");
 
-            Console.WriteLine(MathNet.Numerics.Integration.NewtonCotesTrapeziumRule.IntegrateAdaptive(phi, 0, l, 1e-5));
-
             chart.Series.Clear();
             chart.Series.Add("Начальное условие \u03D5(x)");
             chart.Series["Начальное условие \u03D5(x)"].ChartType = SeriesChartType.Spline;
-            chart.Series["Начальное условие \u03D5(x)"]["LineTension"] = "0.2";
             chart.Series["Начальное условие \u03D5(x)"].Color = Color.Gray;
             chart.Series["Начальное условие \u03D5(x)"].BorderWidth = 2;
 
-            double dx = 0.1;
-            for (double x = 0.0; x <= 7; x += dx)
+            for (double i = 0; i <= L; i += h)
             {
-                chart.Series["Начальное условие \u03D5(x)"].Points.AddXY(x, phi(x));
+                chart.Series["Начальное условие \u03D5(x)"].Points.AddXY(i, phi(i));
             }
 
+            grid2D = new Grid2D(phi, psi, b, a, L, T, h, t);
+            backgroundWorker1.RunWorkerAsync();
+            grid2D.SolveHomogeneous(ref backgroundWorker1);
+
+            trackBar1.Value = int.Parse(textBox7.Text) - 1;
+            groupBox6.Text = String.Format("Текущий слой: {0} (последний)", trackBar1.Value);
+            string number_layer = "Слой " + trackBar1.Value;
+            if (trackBar1.Value == int.Parse(textBox7.Text) - 1)
+            {
+                number_layer += " (последний)";
+            }
+            chart.Series.Add(number_layer);
+            chart.Series[number_layer].ChartType = SeriesChartType.Spline;
+            chart.Series[number_layer].Color = Color.Black;
+            chart.Series[number_layer].BorderWidth = 2;
 
 
-
-
-
+            double[] layer = grid2D.GetLastLayer();
+            for (int i = 0; i < layer.Length; i++)
+            {
+                chart.Series[number_layer].Points.AddXY(i * h, layer[i]);
+            }
         }
 
-        private void BackgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        private void textBox3_TextChanged(object sender, EventArgs e)
         {
-            progressBar1.Value = e.ProgressPercentage;
+            if (double.TryParse(textBox2.Text, out double L) && 
+                double.TryParse(textBox3.Text, out double h) &&
+                (textBox3.Focused || textBox2.Focused))
+            {
+                double h_count = L / h + 1;
+                textBox6.Text = h_count.ToString();
+
+                if ((int)h_count == h_count)
+                {
+                    button1.Enabled = true;
+                }
+                else
+                {
+                    button1.Enabled = false;
+                    new ToolTip().Show("Должно быть целым!", textBox6, 1000);
+                }
+            }
+            else
+            {
+                button1.Enabled = false;
+            }
         }
 
-        private void BackgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        private void textBox6_TextChanged(object sender, EventArgs e)
         {
-            progressBar1.Value = 0;
+            if (double.TryParse(textBox2.Text, out double L) && 
+                int.TryParse(textBox6.Text, out int h_count) &&
+                (textBox6.Focused || textBox2.Focused))
+            {
+                double h = (L + 1) / h_count;
+                textBox3.Text = h.ToString();
+
+                button1.Enabled = true;
+            }
+        }
+
+        private void textBox4_TextChanged(object sender, EventArgs e)
+        {
+            if (double.TryParse(textBox5.Text, out double T) && 
+                double.TryParse(textBox4.Text, out double t) &&
+                (textBox4.Focused || textBox5.Focused))
+            {
+                double t_count = T / t + 1;
+                textBox7.Text = t_count.ToString();
+
+                if ((int)t_count == t_count)
+                {
+                    button1.Enabled = true;
+                }
+                else
+                {
+                    button1.Enabled = false;
+                    new ToolTip().Show("Должно быть целым!", textBox7, 1000);
+                }
+            }
+            else
+            {
+                button1.Enabled = false;
+            }
+        }
+
+        private void textBox7_TextChanged(object sender, EventArgs e)
+        {
+            if (double.TryParse(textBox5.Text, out double T) && 
+                int.TryParse(textBox7.Text, out int t_count) &&
+                (textBox7.Focused || textBox2.Focused))
+            {
+                double t = (T + 1) / t_count;
+                textBox4.Text = t.ToString();
+
+                button1.Enabled = true;
+            }
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+            textBox3_TextChanged(sender, e);
+            textBox6_TextChanged(sender, e);
+        }
+
+        private void textBox5_TextChanged(object sender, EventArgs e)
+        {
+            textBox4_TextChanged(sender, e);
+            textBox7_TextChanged(sender, e);
+        }
+
+        private void trackBar1_Scroll(object sender, EventArgs e)
+        {
+            double h = double.Parse(textBox3.Text);
+            groupBox6.Text = String.Format("Текущий слой: {0}", trackBar1.Value);
+            string number_layer = "Слой " + trackBar1.Value;
+            if (trackBar1.Value == int.Parse(textBox7.Text) - 1)
+            {
+                number_layer += " (последний)";
+                groupBox6.Text += " (последний)";
+            }
+
+            chart.Series.RemoveAt(1);
+            chart.Series.Add(number_layer);
+            chart.Series[number_layer].ChartType = SeriesChartType.Spline;
+            chart.Series[number_layer].Color = Color.Black;
+            chart.Series[number_layer].BorderWidth = 2;
+
+            double[] layer = grid2D.GetLayer(trackBar1.Value);
+            for (int i = 0; i < layer.Length; i++)
+            {
+                chart.Series[number_layer].Points.AddXY(i * h, layer[i]);
+            }
         }
     }
 }
