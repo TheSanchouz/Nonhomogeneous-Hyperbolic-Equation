@@ -139,8 +139,7 @@ namespace Nonhomogeneous_Hyperbolic_Equation
             }
 
             grid2D = new Grid2D(phi, psi, b, a, L, T, h, t);
-            backgroundWorker1.RunWorkerAsync();
-            grid2D.SolveHomogeneous(ref backgroundWorker1);
+            grid2D.SolveHomogeneous();
 
             trackBar1.Value = int.Parse(textBox7.Text) - 1;
             groupBox6.Text = String.Format("Текущий слой: {0} (последний)", trackBar1.Value);
