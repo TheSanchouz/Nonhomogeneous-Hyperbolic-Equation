@@ -90,6 +90,7 @@
             this.groupBoxChoiseEqType = new System.Windows.Forms.GroupBox();
             this.radioButtonNongomogeneous = new System.Windows.Forms.RadioButton();
             this.radioButtonHomogeneous = new System.Windows.Forms.RadioButton();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.chart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -102,6 +103,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.trackBarCurrentLayer)).BeginInit();
             this.groupBoxCurrentLayer.SuspendLayout();
             this.groupBoxChoiseEqType.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -471,6 +473,7 @@
             // 
             // pictureBox1
             // 
+            this.pictureBox1.Enabled = false;
             this.pictureBox1.Location = new System.Drawing.Point(12, 162);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(400, 60);
@@ -480,6 +483,7 @@
             // 
             // pictureBox2
             // 
+            this.pictureBox2.Enabled = false;
             this.pictureBox2.Location = new System.Drawing.Point(12, 228);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(400, 60);
@@ -489,9 +493,10 @@
             // 
             // pictureBox3
             // 
+            this.pictureBox3.Enabled = false;
             this.pictureBox3.Location = new System.Drawing.Point(12, 294);
             this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(600, 60);
+            this.pictureBox3.Size = new System.Drawing.Size(400, 60);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox3.TabIndex = 43;
             this.pictureBox3.TabStop = false;
@@ -686,11 +691,21 @@
             this.radioButtonHomogeneous.Text = "Однородное";
             this.radioButtonHomogeneous.UseVisualStyleBackColor = true;
             // 
+            // pictureBox4
+            // 
+            this.pictureBox4.Location = new System.Drawing.Point(12, 162);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(461, 190);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox4.TabIndex = 53;
+            this.pictureBox4.TabStop = false;
+            // 
             // Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1320, 926);
+            this.Controls.Add(this.pictureBox4);
             this.Controls.Add(this.groupBoxChoiseEqType);
             this.Controls.Add(this.groupBoxCurrentLayer);
             this.Controls.Add(this.groupBoxStepLayers);
@@ -723,6 +738,7 @@
             this.groupBoxCurrentLayer.PerformLayout();
             this.groupBoxChoiseEqType.ResumeLayout(false);
             this.groupBoxChoiseEqType.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -788,6 +804,7 @@
         private System.Windows.Forms.GroupBox groupBoxChoiseEqType;
         private System.Windows.Forms.RadioButton radioButtonNongomogeneous;
         private System.Windows.Forms.RadioButton radioButtonHomogeneous;
+        private System.Windows.Forms.PictureBox pictureBox4;
     }
 }
 

@@ -25,6 +25,7 @@ namespace Nonhomogeneous_Hyperbolic_Equation
         {
             InitializeComponent();
             MathNet.Numerics.Control.ConfigureAuto();
+            pictureBox4.Image = Image.FromFile("d:\\Nonhomogeneous-Hyperbolic-Equation\\Nonhomogeneous Hyperbolic Equation\\sl.png");
 
             chart.Series.Clear();
             chart.ChartAreas[0].AxisX.IsMarginVisible = false;
