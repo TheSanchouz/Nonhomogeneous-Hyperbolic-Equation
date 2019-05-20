@@ -50,24 +50,17 @@ namespace Nonhomogeneous_Hyperbolic_Equation
             for (int j = 0; j <= dim_L; j++)
             {
                 grid[0, j] = phi(h * j);
-                Console.WriteLine(grid[0, j]);
             }
-            Console.WriteLine();
 
             // второй слой без граничных точек
             for (int j = 1; j <= dim_L - 1; j++)
             {
                 grid[1, j] = phi(h * j) + psi(h * j) * t +
-                    (grid[0, j + 1] - 2 * grid[0, j] + grid[0, j - 1]) * a * a * t * t / (2 * h * h);
+                    ((grid[0, j + 1] - 2 * grid[0, j] + grid[0, j - 1]) * a * a * t * t) / (2 * h * h);
             }
             // граничые точки
             grid[1, 0] = (4 * grid[1, 1] - grid[1, 2]) / 3;
             grid[1, dim_L] = (-grid[1, dim_L - 2] + 4 * grid[1, dim_L - 1]) / 3;
-
-            for (int j = 0; j <= dim_L; j++)
-            {
-                Console.WriteLine($"{h * j} = {grid[1, j]}");
-            }
 
             // шаблон неявный T
             // конвеер
@@ -84,9 +77,9 @@ namespace Nonhomogeneous_Hyperbolic_Equation
 
                 for (int j = 1; j <= dim_L - 1; j++)
                 {
-                    coeff[j, j - 1] = a * a / (h * h);
-                    coeff[j, j]     = -2 * a * a / (h * h) - t * t;
-                    coeff[j, j + 1] = a * a / (h * h);
+                    coeff[j, j - 1] = (a * a) / (h * h);
+                    coeff[j, j]     = (-2 * a * a) / (h * h) - t * t;
+                    coeff[j, j + 1] = (a * a) / (h * h);
                     b_coeff[j] = -2 * grid[i - 1, j] / (t * t) + grid[i - 2, j] / (t * t);
                 }
 
@@ -116,9 +109,7 @@ namespace Nonhomogeneous_Hyperbolic_Equation
             for (int j = 0; j <= dim_L; j++)
             {
                 grid[0, j] = phi(h * j);
-                Console.WriteLine(grid[0, j]);
             }
-            Console.WriteLine();
 
             // второй слой без граничных точек
             for (int j = 1; j <= dim_L - 1; j++)
@@ -126,17 +117,12 @@ namespace Nonhomogeneous_Hyperbolic_Equation
                 double intergral = MathNet.Numerics.Integration.NewtonCotesTrapeziumRule.IntegrateAdaptive(b, 0, L, 1e-5);
 
                 grid[1, j] = phi(h * j) + psi(h * j) * t +
-                    (grid[0, j + 1] - 2 * grid[0, j] + grid[0, j - 1]) * a * a * t * t / (2 * h * h) +
+                    ((grid[0, j + 1] - 2 * grid[0, j] + grid[0, j - 1]) * a * a * t * t) / (2 * h * h) +
                     grid[0, j] * b(j * h) * t * t / 2;
             }
             // граничые точки
             grid[1, 0] = (4 * grid[1, 1] - grid[1, 2]) / 3;
             grid[1, dim_L] = (-grid[1, dim_L - 2] + 4 * grid[1, dim_L - 1]) / 3;
-
-            for (int j = 0; j <= dim_L; j++)
-            {
-                Console.WriteLine($"{h * j} = {grid[1, j]}");
-            }
 
             // шаблон неявный T
             // конвеер
@@ -155,9 +141,9 @@ namespace Nonhomogeneous_Hyperbolic_Equation
                 {
                     double intergral = MathNet.Numerics.Integration.NewtonCotesTrapeziumRule.IntegrateAdaptive(b, 0, L, 1e-5);
 
-                    coeff[j, j - 1] = a * a / (h * h);
-                    coeff[j, j]     = -2 * a * a / (h * h) - t * t;
-                    coeff[j, j + 1] = a * a / (h * h);
+                    coeff[j, j - 1] = (a * a) / (h * h);
+                    coeff[j, j]     = (-2 * a * a) / (h * h) - t * t;
+                    coeff[j, j + 1] = (a * a) / (h * h);
                     b_coeff[j] = -2 * grid[i - 1, j] / (t * t) + grid[i - 2, j] / (t * t) -
                         grid[i - 1, j] * b(j * h);
                 }
