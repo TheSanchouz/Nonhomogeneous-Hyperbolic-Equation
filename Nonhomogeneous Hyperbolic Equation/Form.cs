@@ -31,8 +31,8 @@ namespace Nonhomogeneous_Hyperbolic_Equation
             chart.ChartAreas[0].AxisX.IntervalAutoMode = IntervalAutoMode.VariableCount;
             chart.ChartAreas[0].AxisY.IntervalAutoMode = IntervalAutoMode.VariableCount;
             chart.ChartAreas[0].AxisX.RoundAxisValues();
-            chart.ChartAreas[0].AxisX.Interval = 1;
-            chart.ChartAreas[0].AxisY.Interval = 1;
+            //chart.ChartAreas[0].AxisX.Interval = 1;
+            //chart.ChartAreas[0].AxisY.Interval = 1;
         }
 
         private void Button1_Click(object sender, EventArgs e)
