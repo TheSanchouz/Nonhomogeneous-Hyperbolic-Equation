@@ -150,11 +150,11 @@ namespace Nonhomogeneous_Hyperbolic_Equation
 
 
             trackBarCurrentLayer.Value = int.Parse(textBox_t_count.Text) - 1;
-            groupBoxCurrentLayer.Text = String.Format("Текущий слой: {0} (последний)", trackBarCurrentLayer.Value);
+            groupBoxCurrentLayer.Text = String.Format("Текущий слой: {0} (последний u(x, T))", trackBarCurrentLayer.Value);
             string number_layer = "Слой " + trackBarCurrentLayer.Value;
             if (trackBarCurrentLayer.Value == int.Parse(textBox_t_count.Text) - 1)
             {
-                number_layer += " (последний)";
+                number_layer += " (последний u(x, T))";
             }
             chart.Series.Add(number_layer);
             chart.Series[number_layer].ChartType = SeriesChartType.Spline;
@@ -264,8 +264,8 @@ namespace Nonhomogeneous_Hyperbolic_Equation
             string number_layer = "Слой " + trackBarCurrentLayer.Value;
             if (trackBarCurrentLayer.Value == int.Parse(textBox_t_count.Text) - 1)
             {
-                number_layer += " (последний)";
-                groupBoxCurrentLayer.Text += " (последний)";
+                number_layer += " (последний u(x, T))";
+                groupBoxCurrentLayer.Text += " (последний u(x, T))";
             }
 
             chart.Series.RemoveAt(1);
