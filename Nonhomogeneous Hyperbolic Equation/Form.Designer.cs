@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -88,8 +88,8 @@
             this.trackBarCurrentLayer = new System.Windows.Forms.TrackBar();
             this.groupBoxCurrentLayer = new System.Windows.Forms.GroupBox();
             this.groupBoxChoiseEqType = new System.Windows.Forms.GroupBox();
-            this.radioButtonHomogeneous = new System.Windows.Forms.RadioButton();
             this.radioButtonNongomogeneous = new System.Windows.Forms.RadioButton();
+            this.radioButtonHomogeneous = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.chart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -455,16 +455,16 @@
             // 
             // chart
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chart.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.chart.Legends.Add(legend2);
+            chartArea1.Name = "ChartArea1";
+            this.chart.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chart.Legends.Add(legend1);
             this.chart.Location = new System.Drawing.Point(12, 360);
             this.chart.Name = "chart";
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.chart.Series.Add(series2);
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chart.Series.Add(series1);
             this.chart.Size = new System.Drawing.Size(1296, 554);
             this.chart.TabIndex = 40;
             this.chart.Text = "chart";
@@ -528,7 +528,7 @@
             this.groupBoxParameters.Controls.Add(this.label1);
             this.groupBoxParameters.Location = new System.Drawing.Point(780, 8);
             this.groupBoxParameters.Name = "groupBoxParameters";
-            this.groupBoxParameters.Size = new System.Drawing.Size(515, 56);
+            this.groupBoxParameters.Size = new System.Drawing.Size(532, 56);
             this.groupBoxParameters.TabIndex = 46;
             this.groupBoxParameters.TabStop = false;
             this.groupBoxParameters.Text = "Параметры уравнения: фазовая скорость, время и длина";
@@ -664,16 +664,6 @@
             this.groupBoxChoiseEqType.TabStop = false;
             this.groupBoxChoiseEqType.Text = "Тип уравнения";
             // 
-            // radioButtonHomogeneous
-            // 
-            this.radioButtonHomogeneous.AutoSize = true;
-            this.radioButtonHomogeneous.Location = new System.Drawing.Point(9, 18);
-            this.radioButtonHomogeneous.Name = "radioButtonHomogeneous";
-            this.radioButtonHomogeneous.Size = new System.Drawing.Size(109, 21);
-            this.radioButtonHomogeneous.TabIndex = 53;
-            this.radioButtonHomogeneous.Text = "Однородное";
-            this.radioButtonHomogeneous.UseVisualStyleBackColor = true;
-            // 
             // radioButtonNongomogeneous
             // 
             this.radioButtonNongomogeneous.AutoSize = true;
@@ -685,6 +675,16 @@
             this.radioButtonNongomogeneous.TabStop = true;
             this.radioButtonNongomogeneous.Text = "Неоднородное";
             this.radioButtonNongomogeneous.UseVisualStyleBackColor = true;
+            // 
+            // radioButtonHomogeneous
+            // 
+            this.radioButtonHomogeneous.AutoSize = true;
+            this.radioButtonHomogeneous.Location = new System.Drawing.Point(9, 18);
+            this.radioButtonHomogeneous.Name = "radioButtonHomogeneous";
+            this.radioButtonHomogeneous.Size = new System.Drawing.Size(109, 21);
+            this.radioButtonHomogeneous.TabIndex = 53;
+            this.radioButtonHomogeneous.Text = "Однородное";
+            this.radioButtonHomogeneous.UseVisualStyleBackColor = true;
             // 
             // Form
             // 

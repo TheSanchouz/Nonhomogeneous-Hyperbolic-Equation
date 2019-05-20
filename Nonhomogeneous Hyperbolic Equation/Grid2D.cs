@@ -74,30 +74,30 @@ namespace Nonhomogeneous_Hyperbolic_Equation
             for (int i = 2; i <= dim_T; i++)
             {
                 double[,] coeff = new double[dim_L + 1, dim_L + 1];
-                double[] b = new double[dim_L + 1];
+                double[] b_coeff = new double[dim_L + 1];
            
 
                 coeff[0, 0] = -3;
                 coeff[0, 1] = 4;
                 coeff[0, 2] = -1;
-                b[0] = 0;
+                b_coeff[0] = 0;
 
                 for (int j = 1; j <= dim_L - 1; j++)
                 {
-                    coeff[j, j - 1] = a * a / (h * h) - t * t;
-                    coeff[j, j]     = -2 * a * a / (h * h);
+                    coeff[j, j - 1] = a * a / (h * h);
+                    coeff[j, j]     = -2 * a * a / (h * h) - t * t;
                     coeff[j, j + 1] = a * a / (h * h);
-                    b[j] = -2 / (t * t) * grid[i - 1, j] + 1 / (t * t) * grid[i - 2, j];
+                    b_coeff[j] = -2 * grid[i - 1, j] / (t * t) + grid[i - 2, j] / (t * t);
                 }
 
                 coeff[dim_L, dim_L - 2] = 1;
                 coeff[dim_L, dim_L - 1] = -4;
                 coeff[dim_L, dim_L] = 3;
-                b[dim_L] = 0;
+                b_coeff[dim_L] = 0;
 
 
                 var Matrix = MathNet.Numerics.LinearAlgebra.Matrix<double>.Build.DenseOfArray(coeff);
-                var b_vector = MathNet.Numerics.LinearAlgebra.Vector<double>.Build.DenseOfArray(b);
+                var b_vector = MathNet.Numerics.LinearAlgebra.Vector<double>.Build.DenseOfArray(b_coeff);
                 var solution = Matrix.Solve(b_vector);
 
                 for (int j = 0; j <= dim_L; j++)
@@ -123,9 +123,11 @@ namespace Nonhomogeneous_Hyperbolic_Equation
             // второй слой без граничных точек
             for (int j = 1; j <= dim_L - 1; j++)
             {
+                double intergral = MathNet.Numerics.Integration.NewtonCotesTrapeziumRule.IntegrateAdaptive(b, 0, L, 1e-5);
+
                 grid[1, j] = phi(h * j) + psi(h * j) * t +
                     (grid[0, j + 1] - 2 * grid[0, j] + grid[0, j - 1]) * a * a * t * t / (2 * h * h) +
-                    (grid[0, j] * b(j * h) + grid[0, j] * b(h * j) * L) * t * t / 2;
+                    grid[0, j] * b(j * h) * t * t / 2;
             }
             // граничые точки
             grid[1, 0] = (4 * grid[1, 1] - grid[1, 2]) / 3;
@@ -153,11 +155,11 @@ namespace Nonhomogeneous_Hyperbolic_Equation
                 {
                     double intergral = MathNet.Numerics.Integration.NewtonCotesTrapeziumRule.IntegrateAdaptive(b, 0, L, 1e-5);
 
-                    coeff[j, j - 1] = a * a / (h * h) - t * t;
-                    coeff[j, j] = -2 * a * a / (h * h);
+                    coeff[j, j - 1] = a * a / (h * h);
+                    coeff[j, j]     = -2 * a * a / (h * h) - t * t;
                     coeff[j, j + 1] = a * a / (h * h);
-                    b_coeff[j] = -2 / (t * t) * grid[i - 1, j] + 1 / (t * t) * grid[i - 2, j] -
-                        grid[i - 1, j] * b(j * h) - grid[i - 1, j] * intergral;
+                    b_coeff[j] = -2 * grid[i - 1, j] / (t * t) + grid[i - 2, j] / (t * t) -
+                        grid[i - 1, j] * b(j * h);
                 }
 
                 coeff[dim_L, dim_L - 2] = 1;
@@ -192,7 +194,7 @@ namespace Nonhomogeneous_Hyperbolic_Equation
         {
             double[] layer = new double[(int)(L / h) + 1];
             for (int j = 0; j <= (int)(L / h); j++)
-            {
+            { 
                 layer[j] = grid[(int)(T / t), j];
             }
 
