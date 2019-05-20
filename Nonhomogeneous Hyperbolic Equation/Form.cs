@@ -37,15 +37,15 @@ namespace Nonhomogeneous_Hyperbolic_Equation
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            trackBar1.Maximum = int.Parse(textBox7.Text) - 1;
+            trackBarCurrentLayer.Maximum = int.Parse(textBox_t_count.Text) - 1;
 
-            double L = double.Parse(textBox2.Text);
-            double T = double.Parse(textBox5.Text);
+            double L = double.Parse(textBoxL.Text);
+            double T = double.Parse(textBoxT.Text);
 
-            double a = Math.Sqrt(double.Parse(textBox1.Text));
-            double l = double.Parse(textBox2.Text);
-            double h = double.Parse(textBox3.Text);
-            double t = double.Parse(textBox4.Text);
+            double a = Math.Sqrt(double.Parse(textBoxA2.Text));
+            double l = double.Parse(textBoxL.Text);
+            double h = double.Parse(textBox_h.Text);
+            double t = double.Parse(textBox_t.Text);
 
             string cos1 = "cos(pi*x/" + Convert.ToString(l) + ")";
             string cos2 = "cos(2*pi*x/" + Convert.ToString(l) + ")";
@@ -130,7 +130,7 @@ namespace Nonhomogeneous_Hyperbolic_Equation
             chart.Series.Clear();
             chart.Series.Add("Начальное условие \u03D5(x)");
             chart.Series["Начальное условие \u03D5(x)"].ChartType = SeriesChartType.Spline;
-            chart.Series["Начальное условие \u03D5(x)"].Color = Color.Gray;
+            chart.Series["Начальное условие \u03D5(x)"].Color = Color.Blue;
             chart.Series["Начальное условие \u03D5(x)"].BorderWidth = 2;
 
             for (double i = 0; i <= L; i += h)
@@ -139,12 +139,20 @@ namespace Nonhomogeneous_Hyperbolic_Equation
             }
 
             grid2D = new Grid2D(phi, psi, b, a, L, T, h, t);
-            grid2D.SolveHomogeneous();
+            if (radioButtonHomogeneous.Checked == true)
+            {
+                grid2D.SolveHomogeneous();
+            }
+            else if (radioButtonNongomogeneous.Checked == true)
+            {
+                grid2D.SolveNonhomogeneous();
+            }
 
-            trackBar1.Value = int.Parse(textBox7.Text) - 1;
-            groupBox6.Text = String.Format("Текущий слой: {0} (последний)", trackBar1.Value);
-            string number_layer = "Слой " + trackBar1.Value;
-            if (trackBar1.Value == int.Parse(textBox7.Text) - 1)
+
+            trackBarCurrentLayer.Value = int.Parse(textBox_t_count.Text) - 1;
+            groupBoxCurrentLayer.Text = String.Format("Текущий слой: {0} (последний)", trackBarCurrentLayer.Value);
+            string number_layer = "Слой " + trackBarCurrentLayer.Value;
+            if (trackBarCurrentLayer.Value == int.Parse(textBox_t_count.Text) - 1)
             {
                 number_layer += " (последний)";
             }
@@ -163,77 +171,77 @@ namespace Nonhomogeneous_Hyperbolic_Equation
 
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
-            if (double.TryParse(textBox2.Text, out double L) && 
-                double.TryParse(textBox3.Text, out double h) &&
-                (textBox3.Focused || textBox2.Focused))
+            if (double.TryParse(textBoxL.Text, out double L) && 
+                double.TryParse(textBox_h.Text, out double h) &&
+                (textBox_h.Focused || textBoxL.Focused))
             {
                 double h_count = L / h + 1;
-                textBox6.Text = h_count.ToString();
+                textBox_h_count.Text = h_count.ToString();
 
                 if ((int)h_count == h_count)
                 {
-                    button1.Enabled = true;
+                    buttonCalculate.Enabled = true;
                 }
                 else
                 {
-                    button1.Enabled = false;
-                    new ToolTip().Show("Должно быть целым!", textBox6, 1000);
+                    buttonCalculate.Enabled = false;
+                    new ToolTip().Show("Должно быть целым!", textBox_h_count, 1000);
                 }
             }
             else
             {
-                button1.Enabled = false;
+                buttonCalculate.Enabled = false;
             }
         }
 
         private void textBox6_TextChanged(object sender, EventArgs e)
         {
-            if (double.TryParse(textBox2.Text, out double L) && 
-                int.TryParse(textBox6.Text, out int h_count) &&
-                (textBox6.Focused || textBox2.Focused))
+            if (double.TryParse(textBoxL.Text, out double L) && 
+                int.TryParse(textBox_h_count.Text, out int h_count) &&
+                (textBox_h_count.Focused || textBoxL.Focused))
             {
                 double h = (L + 1) / h_count;
-                textBox3.Text = h.ToString();
+                textBox_h.Text = h.ToString();
 
-                button1.Enabled = true;
+                buttonCalculate.Enabled = true;
             }
         }
 
         private void textBox4_TextChanged(object sender, EventArgs e)
         {
-            if (double.TryParse(textBox5.Text, out double T) && 
-                double.TryParse(textBox4.Text, out double t) &&
-                (textBox4.Focused || textBox5.Focused))
+            if (double.TryParse(textBoxT.Text, out double T) && 
+                double.TryParse(textBox_t.Text, out double t) &&
+                (textBox_t.Focused || textBoxT.Focused))
             {
                 double t_count = T / t + 1;
-                textBox7.Text = t_count.ToString();
+                textBox_t_count.Text = t_count.ToString();
 
                 if ((int)t_count == t_count)
                 {
-                    button1.Enabled = true;
+                    buttonCalculate.Enabled = true;
                 }
                 else
                 {
-                    button1.Enabled = false;
-                    new ToolTip().Show("Должно быть целым!", textBox7, 1000);
+                    buttonCalculate.Enabled = false;
+                    new ToolTip().Show("Должно быть целым!", textBox_t_count, 1000);
                 }
             }
             else
             {
-                button1.Enabled = false;
+                buttonCalculate.Enabled = false;
             }
         }
 
         private void textBox7_TextChanged(object sender, EventArgs e)
         {
-            if (double.TryParse(textBox5.Text, out double T) && 
-                int.TryParse(textBox7.Text, out int t_count) &&
-                (textBox7.Focused || textBox2.Focused))
+            if (double.TryParse(textBoxT.Text, out double T) && 
+                int.TryParse(textBox_t_count.Text, out int t_count) &&
+                (textBox_t_count.Focused || textBoxL.Focused))
             {
                 double t = (T + 1) / t_count;
-                textBox4.Text = t.ToString();
+                textBox_t.Text = t.ToString();
 
-                button1.Enabled = true;
+                buttonCalculate.Enabled = true;
             }
         }
 
@@ -251,13 +259,13 @@ namespace Nonhomogeneous_Hyperbolic_Equation
 
         private void trackBar1_Scroll(object sender, EventArgs e)
         {
-            double h = double.Parse(textBox3.Text);
-            groupBox6.Text = String.Format("Текущий слой: {0}", trackBar1.Value);
-            string number_layer = "Слой " + trackBar1.Value;
-            if (trackBar1.Value == int.Parse(textBox7.Text) - 1)
+            double h = double.Parse(textBox_h.Text);
+            groupBoxCurrentLayer.Text = String.Format("Текущий слой: {0}", trackBarCurrentLayer.Value);
+            string number_layer = "Слой " + trackBarCurrentLayer.Value;
+            if (trackBarCurrentLayer.Value == int.Parse(textBox_t_count.Text) - 1)
             {
                 number_layer += " (последний)";
-                groupBox6.Text += " (последний)";
+                groupBoxCurrentLayer.Text += " (последний)";
             }
 
             chart.Series.RemoveAt(1);
@@ -266,7 +274,7 @@ namespace Nonhomogeneous_Hyperbolic_Equation
             chart.Series[number_layer].Color = Color.Black;
             chart.Series[number_layer].BorderWidth = 2;
 
-            double[] layer = grid2D.GetLayer(trackBar1.Value);
+            double[] layer = grid2D.GetLayer(trackBarCurrentLayer.Value);
             for (int i = 0; i < layer.Length; i++)
             {
                 chart.Series[number_layer].Points.AddXY(i * h, layer[i]);
