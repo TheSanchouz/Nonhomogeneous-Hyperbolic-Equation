@@ -176,7 +176,7 @@ namespace Nonhomogeneous_Hyperbolic_Equation
         public double[] GetLayer(int i)
         {
             double[] layer = new double[(int)(L / h) + 1];
-            for (int j = 0; j < (int)(L / h); j++)
+            for (int j = 0; j <= (int)(L / h); j++)
             {
                 layer[j] = grid[i, j];
             }
@@ -187,7 +187,7 @@ namespace Nonhomogeneous_Hyperbolic_Equation
         public double[] GetLastLayer()
         {
             double[] layer = new double[(int)(L / h) + 1];
-            for (int j = 0; j < (int)(L / h); j++)
+            for (int j = 0; j <= (int)(L / h); j++)
             {
                 layer[j] = grid[(int)(T / t), j];
             }
