@@ -25,7 +25,12 @@ namespace Nonhomogeneous_Hyperbolic_Equation
         {
             InitializeComponent();
             MathNet.Numerics.Control.ConfigureAuto();
-            pictureBox4.Image = Image.FromFile("d:\\Nonhomogeneous-Hyperbolic-Equation\\Nonhomogeneous Hyperbolic Equation\\sl.png");
+            pictureBox4.Image = Image.FromFile("d:\\" +
+                "Programming\\" +
+                "Computational Methods\\" +
+                "Nonhomogeneous Hyperbolic Equation\\" +
+                "Nonhomogeneous Hyperbolic Equation\\" +
+                "equation.jpg");
 
             chart.Series.Clear();
             chart.ChartAreas[0].AxisX.IsMarginVisible = false;
@@ -92,36 +97,36 @@ namespace Nonhomogeneous_Hyperbolic_Equation
 
             MathNet.Symbolics.SymbolicExpression expr_b = MathNet.Symbolics.SymbolicExpression.Parse(formula_b);
 
-            pictureBox1.BeginInvoke((MethodInvoker)(() =>
-            {
-                string latex_formula_phi =
-                    "\\phi\\left(x\\right)=" +
-                    MathNet.Symbolics.LaTeX.Format(expr_phi.Expression).Replace("\\pix", "{\\pi}x");
+            //pictureBox1.BeginInvoke((MethodInvoker)(() =>
+            //{
+            //    string latex_formula_phi =
+            //        "\\phi\\left(x\\right)=" +
+            //        MathNet.Symbolics.LaTeX.Format(expr_phi.Expression).Replace("\\pix", "{\\pi}x");
 
-                TexFormula texFormula = texFormulaParser.Parse(latex_formula_phi);
-                byte[] pngBytes = texFormula.RenderToPng(100.0, 0.0, 0.0, "Arial");
-                pictureBox1.Image = Image.FromStream(new MemoryStream(pngBytes));
-            }));
-            pictureBox2.BeginInvoke((MethodInvoker)(() =>
-            {
-                string latex_formula_psi =
-                    "\\psi\\left(x\\right)=" +
-                    MathNet.Symbolics.LaTeX.Format(expr_psi.Expression).Replace("\\pix", "{\\pi}x");
+            //    TexFormula texFormula = texFormulaParser.Parse(latex_formula_phi);
+            //    byte[] pngBytes = texFormula.RenderToPng(100.0, 0.0, 0.0, "Arial");
+            //    pictureBox1.Image = Image.FromStream(new MemoryStream(pngBytes));
+            //}));
+            //pictureBox2.BeginInvoke((MethodInvoker)(() =>
+            //{
+            //    string latex_formula_psi =
+            //        "\\psi\\left(x\\right)=" +
+            //        MathNet.Symbolics.LaTeX.Format(expr_psi.Expression).Replace("\\pix", "{\\pi}x");
 
-                TexFormula texFormula = texFormulaParser.Parse(latex_formula_psi);
-                byte[] pngBytes = texFormula.RenderToPng(100.0, 0.0, 0.0, "Arial");
-                pictureBox2.Image = Image.FromStream(new MemoryStream(pngBytes));
-            }));
-            pictureBox3.BeginInvoke((MethodInvoker)(() =>
-            {
-                string latex_formula_b =
-                    "b\\left(x\\right)=" +
-                    MathNet.Symbolics.LaTeX.Format(expr_b.Expression).Replace("\\pix", "{\\pi}x");
+            //    TexFormula texFormula = texFormulaParser.Parse(latex_formula_psi);
+            //    byte[] pngBytes = texFormula.RenderToPng(100.0, 0.0, 0.0, "Arial");
+            //    pictureBox2.Image = Image.FromStream(new MemoryStream(pngBytes));
+            //}));
+            //pictureBox3.BeginInvoke((MethodInvoker)(() =>
+            //{
+            //    string latex_formula_b =
+            //        "b\\left(x\\right)=" +
+            //        MathNet.Symbolics.LaTeX.Format(expr_b.Expression).Replace("\\pix", "{\\pi}x");
 
-                TexFormula texFormula = texFormulaParser.Parse(latex_formula_b);
-                byte[] pngBytes = texFormula.RenderToPng(100.0, 0.0, 0.0, "Arial");
-                pictureBox3.Image = Image.FromStream(new MemoryStream(pngBytes));
-            }));
+            //    TexFormula texFormula = texFormulaParser.Parse(latex_formula_b);
+            //    byte[] pngBytes = texFormula.RenderToPng(100.0, 0.0, 0.0, "Arial");
+            //    pictureBox3.Image = Image.FromStream(new MemoryStream(pngBytes));
+            //}));
 
 
             Func<double, double> phi = expr_phi.Compile("x");

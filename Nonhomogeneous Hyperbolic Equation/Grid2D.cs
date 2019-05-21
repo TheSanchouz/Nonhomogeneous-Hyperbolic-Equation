@@ -56,7 +56,7 @@ namespace Nonhomogeneous_Hyperbolic_Equation
             for (int j = 1; j <= dim_L - 1; j++)
             {
                 grid[1, j] = phi(h * j) + psi(h * j) * t +
-                    ((grid[0, j + 1] - 2 * grid[0, j] + grid[0, j - 1]) * a * a * t * t) / (2 * h * h);
+                    ((grid[0, j + 1] - 2 * grid[0, j] + grid[0, j - 1]) * (a * a) * (t * t)) / (2 * (h * h));
             }
             // граничые точки
             grid[1, 0] = (4 * grid[1, 1] - grid[1, 2]) / 3;
@@ -78,9 +78,9 @@ namespace Nonhomogeneous_Hyperbolic_Equation
                 for (int j = 1; j <= dim_L - 1; j++)
                 {
                     coeff[j, j - 1] = (a * a) / (h * h);
-                    coeff[j, j]     = (-2 * a * a) / (h * h) - t * t;
+                    coeff[j, j]     = (-2 * a * a) / (h * h) - 1 / (t * t);
                     coeff[j, j + 1] = (a * a) / (h * h);
-                    b_coeff[j] = -2 * grid[i - 1, j] / (t * t) + grid[i - 2, j] / (t * t);
+                    b_coeff[j] = (-2 * grid[i - 1, j] + grid[i - 2, j]) / (t * t);
                 }
 
                 coeff[dim_L, dim_L - 2] = 1;
@@ -117,8 +117,8 @@ namespace Nonhomogeneous_Hyperbolic_Equation
                 double intergral = MathNet.Numerics.Integration.NewtonCotesTrapeziumRule.IntegrateAdaptive(b, 0, L, 1e-5);
 
                 grid[1, j] = phi(h * j) + psi(h * j) * t +
-                    ((grid[0, j + 1] - 2 * grid[0, j] + grid[0, j - 1]) * a * a * t * t) / (2 * h * h) +
-                    (grid[0, j] * b(j * h) + grid[0, j] * intergral) * t * t / 2;
+                    ((grid[0, j + 1] - 2 * grid[0, j] + grid[0, j - 1]) * (a * a) * (t * t)) / (2 * (h * h)) +
+                    (grid[0, j] * b(j * h) + grid[0, j] * intergral) * (t * t) / 2;
             }
             // граничые точки
             grid[1, 0] = (4 * grid[1, 1] - grid[1, 2]) / 3;
@@ -142,9 +142,9 @@ namespace Nonhomogeneous_Hyperbolic_Equation
                     double intergral = MathNet.Numerics.Integration.NewtonCotesTrapeziumRule.IntegrateAdaptive(b, 0, L, 1e-5);
 
                     coeff[j, j - 1] = (a * a) / (h * h);
-                    coeff[j, j]     = (-2 * a * a) / (h * h) - t * t;
+                    coeff[j, j]     = (-2 * a * a) / (h * h) - 1 / (t * t);
                     coeff[j, j + 1] = (a * a) / (h * h);
-                    b_coeff[j] = -2 * grid[i - 1, j] / (t * t) + grid[i - 2, j] / (t * t) -
+                    b_coeff[j] = (-2 * grid[i - 1, j] + grid[i - 2, j]) / (t * t) -
                         grid[i - 1, j] * b(j * h) - grid[0, j] * intergral;
                 }
 

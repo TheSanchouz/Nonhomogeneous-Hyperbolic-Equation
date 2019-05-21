@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -111,7 +111,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(6, 25);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(43, 17);
+            this.label1.Size = new System.Drawing.Size(49, 20);
             this.label1.TabIndex = 0;
             this.label1.Text = "a^2 =";
             // 
@@ -120,7 +120,7 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(187, 25);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(28, 17);
+            this.label2.Size = new System.Drawing.Size(34, 20);
             this.label2.TabIndex = 1;
             this.label2.Text = "L =";
             // 
@@ -129,7 +129,7 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(23, 29);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(28, 17);
+            this.label3.Size = new System.Drawing.Size(33, 20);
             this.label3.TabIndex = 2;
             this.label3.Text = "h =";
             // 
@@ -138,7 +138,7 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(27, 62);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(24, 17);
+            this.label4.Size = new System.Drawing.Size(29, 20);
             this.label4.TabIndex = 3;
             this.label4.Text = "t =";
             // 
@@ -146,7 +146,7 @@
             // 
             this.textBoxA2.Location = new System.Drawing.Point(57, 22);
             this.textBoxA2.Name = "textBoxA2";
-            this.textBoxA2.Size = new System.Drawing.Size(100, 23);
+            this.textBoxA2.Size = new System.Drawing.Size(100, 27);
             this.textBoxA2.TabIndex = 4;
             this.textBoxA2.Text = "1";
             // 
@@ -154,7 +154,7 @@
             // 
             this.textBoxL.Location = new System.Drawing.Point(221, 22);
             this.textBoxL.Name = "textBoxL";
-            this.textBoxL.Size = new System.Drawing.Size(100, 23);
+            this.textBoxL.Size = new System.Drawing.Size(100, 27);
             this.textBoxL.TabIndex = 5;
             this.textBoxL.Text = "7";
             this.textBoxL.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
@@ -163,7 +163,7 @@
             // 
             this.textBox_h.Location = new System.Drawing.Point(63, 26);
             this.textBox_h.Name = "textBox_h";
-            this.textBox_h.Size = new System.Drawing.Size(100, 23);
+            this.textBox_h.Size = new System.Drawing.Size(100, 27);
             this.textBox_h.TabIndex = 6;
             this.textBox_h.Text = "1";
             this.textBox_h.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
@@ -172,7 +172,7 @@
             // 
             this.textBox_t.Location = new System.Drawing.Point(63, 59);
             this.textBox_t.Name = "textBox_t";
-            this.textBox_t.Size = new System.Drawing.Size(100, 23);
+            this.textBox_t.Size = new System.Drawing.Size(100, 27);
             this.textBox_t.TabIndex = 7;
             this.textBox_t.Text = "1";
             this.textBox_t.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
@@ -182,7 +182,7 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(370, 25);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(29, 17);
+            this.label5.Size = new System.Drawing.Size(34, 20);
             this.label5.TabIndex = 8;
             this.label5.Text = "T =";
             // 
@@ -191,7 +191,7 @@
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(11, 29);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(45, 17);
+            this.label6.Size = new System.Drawing.Size(56, 20);
             this.label6.TabIndex = 9;
             this.label6.Text = "φ(x) =";
             // 
@@ -200,7 +200,7 @@
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(11, 69);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(45, 17);
+            this.label7.Size = new System.Drawing.Size(56, 20);
             this.label7.TabIndex = 10;
             this.label7.Text = "ψ(x) =";
             // 
@@ -209,7 +209,7 @@
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(11, 110);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(44, 17);
+            this.label8.Size = new System.Drawing.Size(53, 20);
             this.label8.TabIndex = 11;
             this.label8.Text = "b(x) =";
             // 
@@ -217,7 +217,7 @@
             // 
             this.textBox_phi_coeff_1.Location = new System.Drawing.Point(70, 26);
             this.textBox_phi_coeff_1.Name = "textBox_phi_coeff_1";
-            this.textBox_phi_coeff_1.Size = new System.Drawing.Size(40, 23);
+            this.textBox_phi_coeff_1.Size = new System.Drawing.Size(40, 27);
             this.textBox_phi_coeff_1.TabIndex = 12;
             this.textBox_phi_coeff_1.Text = "1";
             // 
@@ -225,7 +225,7 @@
             // 
             this.textBox_phi_coeff_2.Location = new System.Drawing.Point(141, 26);
             this.textBox_phi_coeff_2.Name = "textBox_phi_coeff_2";
-            this.textBox_phi_coeff_2.Size = new System.Drawing.Size(40, 23);
+            this.textBox_phi_coeff_2.Size = new System.Drawing.Size(40, 27);
             this.textBox_phi_coeff_2.TabIndex = 13;
             this.textBox_phi_coeff_2.Text = "1";
             // 
@@ -233,7 +233,7 @@
             // 
             this.textBox_phi_coeff_3.Location = new System.Drawing.Point(301, 26);
             this.textBox_phi_coeff_3.Name = "textBox_phi_coeff_3";
-            this.textBox_phi_coeff_3.Size = new System.Drawing.Size(40, 23);
+            this.textBox_phi_coeff_3.Size = new System.Drawing.Size(40, 27);
             this.textBox_phi_coeff_3.TabIndex = 14;
             this.textBox_phi_coeff_3.Text = "1";
             // 
@@ -242,7 +242,7 @@
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(116, 29);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(16, 17);
+            this.label9.Size = new System.Drawing.Size(19, 20);
             this.label9.TabIndex = 15;
             this.label9.Text = "+";
             // 
@@ -251,7 +251,7 @@
             this.label10.AutoSize = true;
             this.label10.Location = new System.Drawing.Point(187, 29);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(66, 17);
+            this.label10.Size = new System.Drawing.Size(79, 20);
             this.label10.TabIndex = 16;
             this.label10.Text = "cos(πx/7)";
             // 
@@ -260,7 +260,7 @@
             this.label11.AutoSize = true;
             this.label11.Location = new System.Drawing.Point(276, 29);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(16, 17);
+            this.label11.Size = new System.Drawing.Size(19, 20);
             this.label11.TabIndex = 17;
             this.label11.Text = "+";
             // 
@@ -269,7 +269,7 @@
             this.label12.AutoSize = true;
             this.label12.Location = new System.Drawing.Point(347, 29);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(74, 17);
+            this.label12.Size = new System.Drawing.Size(88, 20);
             this.label12.TabIndex = 18;
             this.label12.Text = "cos(2πx/7)";
             // 
@@ -277,7 +277,7 @@
             // 
             this.textBox_psi_coeff_1.Location = new System.Drawing.Point(70, 66);
             this.textBox_psi_coeff_1.Name = "textBox_psi_coeff_1";
-            this.textBox_psi_coeff_1.Size = new System.Drawing.Size(40, 23);
+            this.textBox_psi_coeff_1.Size = new System.Drawing.Size(40, 27);
             this.textBox_psi_coeff_1.TabIndex = 19;
             this.textBox_psi_coeff_1.Text = "1";
             // 
@@ -286,7 +286,7 @@
             this.label13.AutoSize = true;
             this.label13.Location = new System.Drawing.Point(116, 69);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(16, 17);
+            this.label13.Size = new System.Drawing.Size(19, 20);
             this.label13.TabIndex = 20;
             this.label13.Text = "+";
             // 
@@ -294,7 +294,7 @@
             // 
             this.textBox_psi_coeff_2.Location = new System.Drawing.Point(141, 67);
             this.textBox_psi_coeff_2.Name = "textBox_psi_coeff_2";
-            this.textBox_psi_coeff_2.Size = new System.Drawing.Size(40, 23);
+            this.textBox_psi_coeff_2.Size = new System.Drawing.Size(40, 27);
             this.textBox_psi_coeff_2.TabIndex = 21;
             this.textBox_psi_coeff_2.Text = "1";
             // 
@@ -303,7 +303,7 @@
             this.label14.AutoSize = true;
             this.label14.Location = new System.Drawing.Point(187, 70);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(66, 17);
+            this.label14.Size = new System.Drawing.Size(79, 20);
             this.label14.TabIndex = 22;
             this.label14.Text = "cos(πx/7)";
             // 
@@ -312,7 +312,7 @@
             this.label15.AutoSize = true;
             this.label15.Location = new System.Drawing.Point(276, 70);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(16, 17);
+            this.label15.Size = new System.Drawing.Size(19, 20);
             this.label15.TabIndex = 23;
             this.label15.Text = "+";
             // 
@@ -320,7 +320,7 @@
             // 
             this.textBox_psi_coeff_3.Location = new System.Drawing.Point(301, 67);
             this.textBox_psi_coeff_3.Name = "textBox_psi_coeff_3";
-            this.textBox_psi_coeff_3.Size = new System.Drawing.Size(40, 23);
+            this.textBox_psi_coeff_3.Size = new System.Drawing.Size(40, 27);
             this.textBox_psi_coeff_3.TabIndex = 24;
             this.textBox_psi_coeff_3.Text = "1";
             // 
@@ -329,15 +329,15 @@
             this.label16.AutoSize = true;
             this.label16.Location = new System.Drawing.Point(347, 69);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(74, 17);
+            this.label16.Size = new System.Drawing.Size(88, 20);
             this.label16.TabIndex = 25;
             this.label16.Text = "cos(2πx/7)";
             // 
             // buttonCalculate
             // 
-            this.buttonCalculate.Location = new System.Drawing.Point(1167, 78);
+            this.buttonCalculate.Location = new System.Drawing.Point(1167, 77);
             this.buttonCalculate.Name = "buttonCalculate";
-            this.buttonCalculate.Size = new System.Drawing.Size(145, 49);
+            this.buttonCalculate.Size = new System.Drawing.Size(172, 49);
             this.buttonCalculate.TabIndex = 26;
             this.buttonCalculate.Text = "Рассчитать";
             this.buttonCalculate.UseVisualStyleBackColor = true;
@@ -347,7 +347,7 @@
             // 
             this.textBox_b_coeff_1.Location = new System.Drawing.Point(70, 107);
             this.textBox_b_coeff_1.Name = "textBox_b_coeff_1";
-            this.textBox_b_coeff_1.Size = new System.Drawing.Size(40, 23);
+            this.textBox_b_coeff_1.Size = new System.Drawing.Size(40, 27);
             this.textBox_b_coeff_1.TabIndex = 27;
             this.textBox_b_coeff_1.Text = "1";
             // 
@@ -356,7 +356,7 @@
             this.label17.AutoSize = true;
             this.label17.Location = new System.Drawing.Point(116, 110);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(16, 17);
+            this.label17.Size = new System.Drawing.Size(19, 20);
             this.label17.TabIndex = 28;
             this.label17.Text = "+";
             // 
@@ -364,7 +364,7 @@
             // 
             this.textBox_b_coeff_2.Location = new System.Drawing.Point(141, 107);
             this.textBox_b_coeff_2.Name = "textBox_b_coeff_2";
-            this.textBox_b_coeff_2.Size = new System.Drawing.Size(40, 23);
+            this.textBox_b_coeff_2.Size = new System.Drawing.Size(40, 27);
             this.textBox_b_coeff_2.TabIndex = 29;
             this.textBox_b_coeff_2.Text = "1";
             // 
@@ -373,7 +373,7 @@
             this.label18.AutoSize = true;
             this.label18.Location = new System.Drawing.Point(187, 110);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(66, 17);
+            this.label18.Size = new System.Drawing.Size(79, 20);
             this.label18.TabIndex = 30;
             this.label18.Text = "cos(πx/7)";
             // 
@@ -382,7 +382,7 @@
             this.label19.AutoSize = true;
             this.label19.Location = new System.Drawing.Point(276, 110);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(16, 17);
+            this.label19.Size = new System.Drawing.Size(19, 20);
             this.label19.TabIndex = 31;
             this.label19.Text = "+";
             // 
@@ -390,7 +390,7 @@
             // 
             this.textBox_b_coeff_3.Location = new System.Drawing.Point(301, 107);
             this.textBox_b_coeff_3.Name = "textBox_b_coeff_3";
-            this.textBox_b_coeff_3.Size = new System.Drawing.Size(40, 23);
+            this.textBox_b_coeff_3.Size = new System.Drawing.Size(40, 27);
             this.textBox_b_coeff_3.TabIndex = 32;
             this.textBox_b_coeff_3.Text = "1";
             // 
@@ -399,7 +399,7 @@
             this.label20.AutoSize = true;
             this.label20.Location = new System.Drawing.Point(347, 110);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(62, 17);
+            this.label20.Size = new System.Drawing.Size(74, 20);
             this.label20.TabIndex = 33;
             this.label20.Text = "sin(πx/7)";
             // 
@@ -408,7 +408,7 @@
             this.label21.AutoSize = true;
             this.label21.Location = new System.Drawing.Point(431, 110);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(16, 17);
+            this.label21.Size = new System.Drawing.Size(19, 20);
             this.label21.TabIndex = 34;
             this.label21.Text = "+";
             // 
@@ -416,7 +416,7 @@
             // 
             this.textBox_b_coeff_4.Location = new System.Drawing.Point(456, 107);
             this.textBox_b_coeff_4.Name = "textBox_b_coeff_4";
-            this.textBox_b_coeff_4.Size = new System.Drawing.Size(40, 23);
+            this.textBox_b_coeff_4.Size = new System.Drawing.Size(40, 27);
             this.textBox_b_coeff_4.TabIndex = 35;
             this.textBox_b_coeff_4.Text = "1";
             // 
@@ -425,7 +425,7 @@
             this.label22.AutoSize = true;
             this.label22.Location = new System.Drawing.Point(502, 110);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(74, 17);
+            this.label22.Size = new System.Drawing.Size(88, 20);
             this.label22.TabIndex = 36;
             this.label22.Text = "cos(2πx/7)";
             // 
@@ -434,7 +434,7 @@
             this.label23.AutoSize = true;
             this.label23.Location = new System.Drawing.Point(600, 110);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(16, 17);
+            this.label23.Size = new System.Drawing.Size(19, 20);
             this.label23.TabIndex = 37;
             this.label23.Text = "+";
             // 
@@ -442,7 +442,7 @@
             // 
             this.textBox_b_coeff_5.Location = new System.Drawing.Point(625, 107);
             this.textBox_b_coeff_5.Name = "textBox_b_coeff_5";
-            this.textBox_b_coeff_5.Size = new System.Drawing.Size(40, 23);
+            this.textBox_b_coeff_5.Size = new System.Drawing.Size(40, 27);
             this.textBox_b_coeff_5.TabIndex = 38;
             this.textBox_b_coeff_5.Text = "1";
             // 
@@ -451,23 +451,23 @@
             this.label24.AutoSize = true;
             this.label24.Location = new System.Drawing.Point(671, 110);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(70, 17);
+            this.label24.Size = new System.Drawing.Size(83, 20);
             this.label24.TabIndex = 39;
             this.label24.Text = "sin(2πx/7)";
             // 
             // chart
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chart.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chart.Legends.Add(legend1);
+            chartArea3.Name = "ChartArea1";
+            this.chart.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this.chart.Legends.Add(legend3);
             this.chart.Location = new System.Drawing.Point(12, 360);
             this.chart.Name = "chart";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chart.Series.Add(series1);
-            this.chart.Size = new System.Drawing.Size(1296, 554);
+            series3.ChartArea = "ChartArea1";
+            series3.Legend = "Legend1";
+            series3.Name = "Series1";
+            this.chart.Series.Add(series3);
+            this.chart.Size = new System.Drawing.Size(1327, 554);
             this.chart.TabIndex = 40;
             this.chart.Text = "chart";
             // 
@@ -505,7 +505,7 @@
             // 
             this.textBoxT.Location = new System.Drawing.Point(405, 22);
             this.textBoxT.Name = "textBoxT";
-            this.textBoxT.Size = new System.Drawing.Size(100, 23);
+            this.textBoxT.Size = new System.Drawing.Size(100, 27);
             this.textBoxT.TabIndex = 44;
             this.textBoxT.Text = "7";
             this.textBoxT.TextChanged += new System.EventHandler(this.textBox5_TextChanged);
@@ -533,7 +533,7 @@
             this.groupBoxParameters.Controls.Add(this.label1);
             this.groupBoxParameters.Location = new System.Drawing.Point(780, 8);
             this.groupBoxParameters.Name = "groupBoxParameters";
-            this.groupBoxParameters.Size = new System.Drawing.Size(532, 56);
+            this.groupBoxParameters.Size = new System.Drawing.Size(553, 56);
             this.groupBoxParameters.TabIndex = 46;
             this.groupBoxParameters.TabStop = false;
             this.groupBoxParameters.Text = "Параметры уравнения: фазовая скорость, время и длина";
@@ -594,7 +594,7 @@
             // 
             this.textBox_h_count.Location = new System.Drawing.Point(63, 26);
             this.textBox_h_count.Name = "textBox_h_count";
-            this.textBox_h_count.Size = new System.Drawing.Size(100, 23);
+            this.textBox_h_count.Size = new System.Drawing.Size(100, 27);
             this.textBox_h_count.TabIndex = 6;
             this.textBox_h_count.Text = "8";
             this.textBox_h_count.TextChanged += new System.EventHandler(this.textBox6_TextChanged);
@@ -604,7 +604,7 @@
             this.label25.AutoSize = true;
             this.label25.Location = new System.Drawing.Point(10, 28);
             this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(47, 17);
+            this.label25.Size = new System.Drawing.Size(57, 20);
             this.label25.TabIndex = 2;
             this.label25.Text = "По h -";
             // 
@@ -612,7 +612,7 @@
             // 
             this.textBox_t_count.Location = new System.Drawing.Point(63, 59);
             this.textBox_t_count.Name = "textBox_t_count";
-            this.textBox_t_count.Size = new System.Drawing.Size(100, 23);
+            this.textBox_t_count.Size = new System.Drawing.Size(100, 27);
             this.textBox_t_count.TabIndex = 7;
             this.textBox_t_count.Text = "8";
             this.textBox_t_count.TextChanged += new System.EventHandler(this.textBox7_TextChanged);
@@ -622,7 +622,7 @@
             this.label26.AutoSize = true;
             this.label26.Location = new System.Drawing.Point(14, 62);
             this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(43, 17);
+            this.label26.Size = new System.Drawing.Size(53, 20);
             this.label26.TabIndex = 3;
             this.label26.Text = "По t -";
             // 
@@ -643,7 +643,7 @@
             this.trackBarCurrentLayer.Maximum = 1;
             this.trackBarCurrentLayer.Minimum = 1;
             this.trackBarCurrentLayer.Name = "trackBarCurrentLayer";
-            this.trackBarCurrentLayer.Size = new System.Drawing.Size(519, 45);
+            this.trackBarCurrentLayer.Size = new System.Drawing.Size(554, 56);
             this.trackBarCurrentLayer.TabIndex = 50;
             this.trackBarCurrentLayer.Value = 1;
             this.trackBarCurrentLayer.Scroll += new System.EventHandler(this.trackBar1_Scroll);
@@ -653,7 +653,7 @@
             this.groupBoxCurrentLayer.Controls.Add(this.trackBarCurrentLayer);
             this.groupBoxCurrentLayer.Location = new System.Drawing.Point(780, 208);
             this.groupBoxCurrentLayer.Name = "groupBoxCurrentLayer";
-            this.groupBoxCurrentLayer.Size = new System.Drawing.Size(532, 80);
+            this.groupBoxCurrentLayer.Size = new System.Drawing.Size(565, 80);
             this.groupBoxCurrentLayer.TabIndex = 51;
             this.groupBoxCurrentLayer.TabStop = false;
             this.groupBoxCurrentLayer.Text = "Текущий слой - null";
@@ -664,7 +664,7 @@
             this.groupBoxChoiseEqType.Controls.Add(this.radioButtonHomogeneous);
             this.groupBoxChoiseEqType.Location = new System.Drawing.Point(1167, 133);
             this.groupBoxChoiseEqType.Name = "groupBoxChoiseEqType";
-            this.groupBoxChoiseEqType.Size = new System.Drawing.Size(145, 69);
+            this.groupBoxChoiseEqType.Size = new System.Drawing.Size(178, 69);
             this.groupBoxChoiseEqType.TabIndex = 52;
             this.groupBoxChoiseEqType.TabStop = false;
             this.groupBoxChoiseEqType.Text = "Тип уравнения";
@@ -675,7 +675,7 @@
             this.radioButtonNongomogeneous.Checked = true;
             this.radioButtonNongomogeneous.Location = new System.Drawing.Point(9, 42);
             this.radioButtonNongomogeneous.Name = "radioButtonNongomogeneous";
-            this.radioButtonNongomogeneous.Size = new System.Drawing.Size(124, 21);
+            this.radioButtonNongomogeneous.Size = new System.Drawing.Size(157, 24);
             this.radioButtonNongomogeneous.TabIndex = 54;
             this.radioButtonNongomogeneous.TabStop = true;
             this.radioButtonNongomogeneous.Text = "Неоднородное";
@@ -686,7 +686,7 @@
             this.radioButtonHomogeneous.AutoSize = true;
             this.radioButtonHomogeneous.Location = new System.Drawing.Point(9, 18);
             this.radioButtonHomogeneous.Name = "radioButtonHomogeneous";
-            this.radioButtonHomogeneous.Size = new System.Drawing.Size(109, 21);
+            this.radioButtonHomogeneous.Size = new System.Drawing.Size(137, 24);
             this.radioButtonHomogeneous.TabIndex = 53;
             this.radioButtonHomogeneous.Text = "Однородное";
             this.radioButtonHomogeneous.UseVisualStyleBackColor = true;
@@ -695,16 +695,16 @@
             // 
             this.pictureBox4.Location = new System.Drawing.Point(12, 162);
             this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(461, 190);
+            this.pictureBox4.Size = new System.Drawing.Size(522, 190);
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox4.TabIndex = 53;
             this.pictureBox4.TabStop = false;
             // 
             // Form
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1320, 926);
+            this.ClientSize = new System.Drawing.Size(1357, 926);
             this.Controls.Add(this.pictureBox4);
             this.Controls.Add(this.groupBoxChoiseEqType);
             this.Controls.Add(this.groupBoxCurrentLayer);
