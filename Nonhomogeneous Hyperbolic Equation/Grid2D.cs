@@ -46,24 +46,52 @@ namespace Nonhomogeneous_Hyperbolic_Equation
             int dim_L = (int)(L / h);
             int dim_T = (int)(T / t);
 
+            double C = a * (t / h);
+
+            //
             // первый слой
+            //
             for (int j = 0; j <= dim_L; j++)
             {
                 grid[0, j] = phi(h * j);
             }
+            //
 
-            // второй слой без граничных точек
+            //
+            // второй слой
+            //
+            double[,] coeff_second = new double[dim_L + 1, dim_L + 1];
+            double[] b_coeff_second = new double[dim_L + 1];
+
+            coeff_second[0, 0] = -3;
+            coeff_second[0, 1] = 4;
+            coeff_second[0, 2] = -1;
+            b_coeff_second[0] = 0;
             for (int j = 1; j <= dim_L - 1; j++)
             {
-                grid[1, j] = phi(h * j) + psi(h * j) * t +
-                    ((grid[0, j + 1] - 2 * grid[0, j] + grid[0, j - 1]) * (a * a) * (t * t)) / (2 * (h * h));
+                coeff_second[j, j - 1] = 1 / (h * h);
+                coeff_second[j, j] = -2 / (h * h) - 1 / t;
+                coeff_second[j, j + 1] = 1 / (h * h);
+                b_coeff_second[j] = -grid[0, j] / t;
             }
-            // граничые точки
-            grid[1, 0] = (4 * grid[1, 1] - grid[1, 2]) / 3;
-            grid[1, dim_L] = (-grid[1, dim_L - 2] + 4 * grid[1, dim_L - 1]) / 3;
+            coeff_second[dim_L, dim_L - 2] = 1;
+            coeff_second[dim_L, dim_L - 1] = -4;
+            coeff_second[dim_L, dim_L] = 3;
+            b_coeff_second[dim_L] = 0;
 
+            var matrix_2layer = MathNet.Numerics.LinearAlgebra.Matrix<double>.Build.DenseOfArray(coeff_second);
+            var b_vector_2layer = MathNet.Numerics.LinearAlgebra.Vector<double>.Build.DenseOfArray(b_coeff_second);
+            var solution_2layer = matrix_2layer.Solve(b_vector_2layer);
+
+            for (int j = 0; j <= dim_L; j++)
+            {
+                grid[1, j] = solution_2layer[j];
+            }
+            //
+
+            //
             // шаблон неявный T
-            // конвеер
+            //
             for (int i = 2; i <= dim_T; i++)
             {
                 double[,] coeff = new double[dim_L + 1, dim_L + 1];
@@ -89,9 +117,9 @@ namespace Nonhomogeneous_Hyperbolic_Equation
                 b_coeff[dim_L] = 0;
 
 
-                var Matrix = MathNet.Numerics.LinearAlgebra.Matrix<double>.Build.DenseOfArray(coeff);
+                var matrix = MathNet.Numerics.LinearAlgebra.Matrix<double>.Build.DenseOfArray(coeff);
                 var b_vector = MathNet.Numerics.LinearAlgebra.Vector<double>.Build.DenseOfArray(b_coeff);
-                var solution = Matrix.Solve(b_vector);
+                var solution = matrix.Solve(b_vector);
 
                 for (int j = 0; j <= dim_L; j++)
                 {
@@ -105,27 +133,53 @@ namespace Nonhomogeneous_Hyperbolic_Equation
             int dim_L = (int)(L / h);
             int dim_T = (int)(T / t);
 
+            double C = a * (t / h);
+
+            //
             // первый слой
+            //
             for (int j = 0; j <= dim_L; j++)
             {
                 grid[0, j] = phi(h * j);
             }
+            //
 
-            // второй слой без граничных точек
+            //
+            // второй слой
+            //
+            double[,] coeff_second = new double[dim_L + 1, dim_L + 1];
+            double[] b_coeff_second = new double[dim_L + 1];
+
+            coeff_second[0, 0] = -3;
+            coeff_second[0, 1] = 4;
+            coeff_second[0, 2] = -1;
+            b_coeff_second[0] = 0;
+            double integral_2layer = Integrate(0);
             for (int j = 1; j <= dim_L - 1; j++)
             {
-                double intergral = MathNet.Numerics.Integration.NewtonCotesTrapeziumRule.IntegrateAdaptive(b, 0, L, 1e-5);
-
-                grid[1, j] = phi(h * j) + psi(h * j) * t +
-                    ((grid[0, j + 1] - 2 * grid[0, j] + grid[0, j - 1]) * (a * a) * (t * t)) / (2 * (h * h)) +
-                    (grid[0, j] * b(j * h) + grid[0, j] * intergral) * (t * t) / 2;
+                coeff_second[j, j - 1] = 1 / (h * h);
+                coeff_second[j, j] = -2 / (h * h) - 1 / t;
+                coeff_second[j, j + 1] = 1 / (h * h);
+                b_coeff_second[j] = -grid[0, j] / t +
+                    grid[j - 1, j] * b(j * h) - grid[j - 1, j] * integral_2layer;
             }
-            // граничые точки
-            grid[1, 0] = (4 * grid[1, 1] - grid[1, 2]) / 3;
-            grid[1, dim_L] = (-grid[1, dim_L - 2] + 4 * grid[1, dim_L - 1]) / 3;
+            coeff_second[dim_L, dim_L - 2] = 1;
+            coeff_second[dim_L, dim_L - 1] = -4;
+            coeff_second[dim_L, dim_L] = 3;
+            b_coeff_second[dim_L] = 0;
 
+            var matrix_2layer = MathNet.Numerics.LinearAlgebra.Matrix<double>.Build.DenseOfArray(coeff_second);
+            var b_vector_2layer = MathNet.Numerics.LinearAlgebra.Vector<double>.Build.DenseOfArray(b_coeff_second);
+            var solution_2layer = matrix_2layer.Solve(b_vector_2layer);
+            for (int j = 0; j <= dim_L; j++)
+            {
+                grid[1, j] = solution_2layer[j];
+            }
+            //
+
+            //
             // шаблон неявный T
-            // конвеер
+            //
             for (int i = 2; i <= dim_T; i++)
             {
                 double[,] coeff = new double[dim_L + 1, dim_L + 1];
@@ -137,15 +191,14 @@ namespace Nonhomogeneous_Hyperbolic_Equation
                 coeff[0, 2] = -1;
                 b_coeff[0] = 0;
 
+                double integral = Integrate(i - 1);
                 for (int j = 1; j <= dim_L - 1; j++)
                 {
-                    double intergral = MathNet.Numerics.Integration.NewtonCotesTrapeziumRule.IntegrateAdaptive(b, 0, L, 1e-5);
-
                     coeff[j, j - 1] = (a * a) / (h * h);
                     coeff[j, j]     = (-2 * a * a) / (h * h) - 1 / (t * t);
                     coeff[j, j + 1] = (a * a) / (h * h);
                     b_coeff[j] = (-2 * grid[i - 1, j] + grid[i - 2, j]) / (t * t) -
-                        grid[i - 1, j] * b(j * h) - grid[0, j] * intergral;
+                        grid[i - 1, j] * b(j * h) + grid[i - 1, j] * integral;
                 }
 
                 coeff[dim_L, dim_L - 2] = 1;
@@ -154,9 +207,9 @@ namespace Nonhomogeneous_Hyperbolic_Equation
                 b_coeff[dim_L] = 0;
 
 
-                var Matrix = MathNet.Numerics.LinearAlgebra.Matrix<double>.Build.DenseOfArray(coeff);
+                var matrix = MathNet.Numerics.LinearAlgebra.Matrix<double>.Build.DenseOfArray(coeff);
                 var b_vector = MathNet.Numerics.LinearAlgebra.Vector<double>.Build.DenseOfArray(b_coeff);
-                var solution = Matrix.Solve(b_vector);
+                var solution = matrix.Solve(b_vector);
 
                 for (int j = 0; j <= dim_L; j++)
                 {
@@ -185,6 +238,44 @@ namespace Nonhomogeneous_Hyperbolic_Equation
             }
 
             return layer;
+        }
+
+        private double Integrate(int i)
+        {
+            int count = (int)(L / h) + 1;
+            double integral = 0.0;
+
+            if (count % 2 != 0)
+            {
+                for (int j = 1; j <= count - 1; j += 2)
+                {
+                    integral += grid[i, j - 1] * b((j - 1) * h) + 
+                        4 * grid[i, j] * b(j * h) + 
+                        grid[i, j + 1] * b((j + 1) * h);
+                }
+
+                integral *= (h / 3);
+            }
+            else
+            {
+                for (int j = 1; j <= count - 4; j += 2)
+                {
+                    integral += grid[i, j - 1] * b((j - 1) * h) +
+                        4 * grid[i, j] * b(j * h) +
+                        grid[i, j + 1] * b((j + 1) * h);
+                }
+
+                integral *= h / 3;
+
+                double integral_3_8 = (3 * h / 8) * (grid[i, count - 4] * b(L - 3 * h) + 
+                    3 * grid[i, count - 3] * b(L - 2 * h) + 
+                    3 * grid[i, count - 2] * b(L - 1 * h) + 
+                    grid[i, count - 1] * b(L));
+
+                integral += integral_3_8;
+            }
+
+            return integral;
         }
     }
 }

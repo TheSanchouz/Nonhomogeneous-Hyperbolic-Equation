@@ -45,18 +45,17 @@ namespace Nonhomogeneous_Hyperbolic_Equation
         {
             trackBarCurrentLayer.Maximum = int.Parse(textBox_t_count.Text) - 1;
 
+            double a = Math.Sqrt(double.Parse(textBoxA2.Text));
             double L = double.Parse(textBoxL.Text);
             double T = double.Parse(textBoxT.Text);
 
-            double a = Math.Sqrt(double.Parse(textBoxA2.Text));
-            double l = double.Parse(textBoxL.Text);
             double h = double.Parse(textBox_h.Text);
             double t = double.Parse(textBox_t.Text);
 
-            string cos1 = "cos(pi*x/" + Convert.ToString(l) + ")";
-            string cos2 = "cos(2*pi*x/" + Convert.ToString(l) + ")";
-            string sin1 = "sin(pi*x/" + Convert.ToString(l) + ")";
-            string sin2 = "sin(2*pi*x/" + Convert.ToString(l) + ")";
+            string cos1 = "cos(pi*x/" + Convert.ToString(L) + ")";
+            string cos2 = "cos(2*pi*x/" + Convert.ToString(L) + ")";
+            string sin1 = "sin(pi*x/" + Convert.ToString(L) + ")";
+            string sin2 = "sin(2*pi*x/" + Convert.ToString(L) + ")";
 
             // phi
             string phi_coeff_1 = textBox_phi_coeff_1.Text;
@@ -96,37 +95,6 @@ namespace Nonhomogeneous_Hyperbolic_Equation
                 b_coeff_5 + "*" + sin2;
 
             MathNet.Symbolics.SymbolicExpression expr_b = MathNet.Symbolics.SymbolicExpression.Parse(formula_b);
-
-            //pictureBox1.BeginInvoke((MethodInvoker)(() =>
-            //{
-            //    string latex_formula_phi =
-            //        "\\phi\\left(x\\right)=" +
-            //        MathNet.Symbolics.LaTeX.Format(expr_phi.Expression).Replace("\\pix", "{\\pi}x");
-
-            //    TexFormula texFormula = texFormulaParser.Parse(latex_formula_phi);
-            //    byte[] pngBytes = texFormula.RenderToPng(100.0, 0.0, 0.0, "Arial");
-            //    pictureBox1.Image = Image.FromStream(new MemoryStream(pngBytes));
-            //}));
-            //pictureBox2.BeginInvoke((MethodInvoker)(() =>
-            //{
-            //    string latex_formula_psi =
-            //        "\\psi\\left(x\\right)=" +
-            //        MathNet.Symbolics.LaTeX.Format(expr_psi.Expression).Replace("\\pix", "{\\pi}x");
-
-            //    TexFormula texFormula = texFormulaParser.Parse(latex_formula_psi);
-            //    byte[] pngBytes = texFormula.RenderToPng(100.0, 0.0, 0.0, "Arial");
-            //    pictureBox2.Image = Image.FromStream(new MemoryStream(pngBytes));
-            //}));
-            //pictureBox3.BeginInvoke((MethodInvoker)(() =>
-            //{
-            //    string latex_formula_b =
-            //        "b\\left(x\\right)=" +
-            //        MathNet.Symbolics.LaTeX.Format(expr_b.Expression).Replace("\\pix", "{\\pi}x");
-
-            //    TexFormula texFormula = texFormulaParser.Parse(latex_formula_b);
-            //    byte[] pngBytes = texFormula.RenderToPng(100.0, 0.0, 0.0, "Arial");
-            //    pictureBox3.Image = Image.FromStream(new MemoryStream(pngBytes));
-            //}));
 
 
             Func<double, double> phi = expr_phi.Compile("x");
